@@ -1,0 +1,1 @@
+[Milky Way and Starry Night Sky](https://www.goodfreephotos.com/astrophotography/milky-way-and-starry-night-sky.jpg.php) photo by [Mariam Espacio](https://www.instagram.com/miriamespacio/) via [Good Free Photos](https://www.goodfreephotos.com/) and was published under [CC0 / Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/) license.

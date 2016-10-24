@@ -81,6 +81,7 @@ public class InputManager : View, IInputManager
 
         deckBackImage = DeckBack.GetComponent<RawImage>();
         deckBackImage.texture = CardManager.CardBack;
+        DeckBack.SetActive(true);
 
         debugText = DebugPanel.GetComponentInChildren<Text>();
     }

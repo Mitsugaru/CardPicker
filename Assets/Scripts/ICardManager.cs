@@ -3,5 +3,13 @@ public interface ICardManager {
 
 	CardInfo SelectCard();
 
+	CardInfo SelectCard(string previousName);
+
 	Texture2D CardBack { get; }
+
+	AudioClip PlayAudio { get; }
+
+	AudioClip BurnAudio { get; }
+	
+	AudioClip StoreAudio { get; }
 }

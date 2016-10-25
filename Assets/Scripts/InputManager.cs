@@ -11,6 +11,9 @@ public class InputManager : View, IInputManager
     [Inject]
     public ICardManager CardManager { get; set; }
 
+    [Inject]
+    public IEventManager EventManager { get; set; }
+
     public float accelerometerUpdateInterval = 1.0f / 60.0f;
 
     [Tooltip("The greater the value of LowPassKernelWidthInSeconds, the slower the filtered value will converge towards current input sample (and vice versa).")]
@@ -166,8 +169,20 @@ public class InputManager : View, IInputManager
                         //We swiped  horizontally
                         if (xDiff > dragForActionThreshold)
                         {
-                            debugText.text = "Redraw";
-                            DrawCard();
+                            if (dragDiff.x > 0)
+                            {
+                                debugText.text = "Spread";
+                                ClearCard();
+                                if (CardManager.StoreAudio != null)
+                                {
+                                    EventManager.Raise(new PlayAudioEvent(CardManager.StoreAudio));
+                                }
+                            }
+                            else
+                            {
+                                debugText.text = "Redraw";
+                                RedrawCard();
+                            }
                         }
                     }
                     else if (yDiff > dragForActionThreshold)
@@ -181,6 +196,10 @@ public class InputManager : View, IInputManager
                                 //TODO burn + cooldown
                                 debugText.text = "Burn";
                                 ClearCard();
+                                if (CardManager.BurnAudio != null)
+                                {
+                                    EventManager.Raise(new PlayAudioEvent(CardManager.BurnAudio));
+                                }
                             }
                             else
                             {
@@ -188,6 +207,10 @@ public class InputManager : View, IInputManager
                                 //TODO cooldown
                                 debugText.text = "Play";
                                 ClearCard();
+                                if(CardManager.PlayAudio != null)
+                                {
+                                    EventManager.Raise(new PlayAudioEvent(CardManager.PlayAudio));
+                                }
                             }
                         }
                         else
@@ -227,6 +250,43 @@ public class InputManager : View, IInputManager
             NameText.text = card.Name;
             DescriptionText.text = card.Description;
             drawnCardImage.enabled = true;
+            if (card.drawAudio != null)
+            {
+                EventManager.Raise(new PlayAudioEvent(card.drawAudio));
+            }
+        }
+    }
+
+    private void RedrawCard()
+    {
+        if (drawnCardImage.enabled)
+        {
+            CardInfo card = CardManager.SelectCard(NameText.text);
+            if (card != null)
+            {
+                drawnCardImage.texture = card.Front;
+                NameText.text = card.Name;
+                DescriptionText.text = card.Description;
+                drawnCardImage.enabled = true;
+
+                AudioClip audio = null;
+                if (card.redrawAudio != null)
+                {
+                    audio = card.redrawAudio;
+                }
+                else if (card.drawAudio != null)
+                {
+                    audio = card.drawAudio;
+                }
+                if (audio != null)
+                {
+                    EventManager.Raise(new PlayAudioEvent(audio));
+                }
+            }
+        }
+        else
+        {
+            DrawCard();
         }
     }
 

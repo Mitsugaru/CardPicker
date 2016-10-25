@@ -8,4 +8,8 @@ public class CardInfo {
 	public Texture2D Front;
 
 	public string Description;
+
+	public AudioClip drawAudio;
+
+	public AudioClip redrawAudio;
 }

@@ -27,9 +27,12 @@ public class RootContext : MVCSContext, IRootContext
         EventManager eventManager = managers.GetComponent<EventManager>();
         injectionBinder.Bind<IEventManager>().ToValue(eventManager).ToSingleton().CrossContext();
 
-        //The following are dependent on the Event Manager
         CardManager cardManager = managers.GetComponent<CardManager>();
         injectionBinder.Bind<ICardManager>().ToValue(cardManager).ToSingleton().CrossContext();
+
+        //The following are dependent on the Event Manager
+        AudioManager audioManager = managers.GetComponent<AudioManager>();
+        injectionBinder.Bind<IAudioManager>().ToValue(audioManager).ToSingleton().CrossContext();
 
         InputManager inputManager = managers.GetComponent<InputManager>();
         injectionBinder.Bind<IInputManager>().ToValue(inputManager).ToSingleton().CrossContext();

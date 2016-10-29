@@ -100,6 +100,7 @@ GameObject:
   - 224: {fileID: 160704824}
   - 222: {fileID: 160704826}
   - 114: {fileID: 160704825}
+  - 95: {fileID: 160704827}
   m_Layer: 5
   m_Name: Card Deck
   m_TagString: Untagged
@@ -157,6 +158,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 160704823}
+--- !u!95 &160704827
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 160704823}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7804b8f089a3a4ddaa4ebb9165585aba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &170493263
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1165,7 @@ GameObject:
   - 224: {fileID: 1989633289}
   - 222: {fileID: 1989633291}
   - 114: {fileID: 1989633290}
+  - 95: {fileID: 1989633292}
   m_Layer: 5
   m_Name: Drawn Card
   m_TagString: Untagged
@@ -1205,6 +1224,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1989633288}
+--- !u!95 &1989633292
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1989633288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ffde631c97eee4c40a72a278d3662d28, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &2138780339
 GameObject:
   m_ObjectHideFlags: 0

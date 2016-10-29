@@ -73,6 +73,10 @@ public class InputManager : View, IInputManager
 
     private Text debugText;
 
+    private Animator deckAnimator;
+
+    private Animator drawnAnimator;
+
     // Use this for initialization
     protected override void Start()
     {
@@ -85,6 +89,9 @@ public class InputManager : View, IInputManager
         deckBackImage = DeckBack.GetComponent<RawImage>();
         deckBackImage.texture = CardManager.CardBack;
         DeckBack.SetActive(true);
+
+        deckAnimator = DeckBack.GetComponent<Animator>();
+        drawnAnimator = DrawnCard.GetComponent<Animator>();
 
         debugText = DebugPanel.GetComponentInChildren<Text>();
     }
@@ -207,7 +214,7 @@ public class InputManager : View, IInputManager
                                 //TODO cooldown
                                 debugText.text = "Play";
                                 ClearCard();
-                                if(CardManager.PlayAudio != null)
+                                if (CardManager.PlayAudio != null)
                                 {
                                     EventManager.Raise(new PlayAudioEvent(CardManager.PlayAudio));
                                 }
@@ -241,7 +248,7 @@ public class InputManager : View, IInputManager
         }
     }
 
-    private void DrawCard()
+    public void DrawCard()
     {
         CardInfo card = CardManager.SelectCard();
         if (card != null)
@@ -252,23 +259,33 @@ public class InputManager : View, IInputManager
             drawnCardImage.enabled = true;
             if (card.drawAudio != null)
             {
+                deckAnimator.ResetTrigger("Reset");
+                drawnAnimator.ResetTrigger("Reset");
+                deckAnimator.SetTrigger("Draw");
+                drawnAnimator.SetTrigger("Draw");
                 EventManager.Raise(new PlayAudioEvent(card.drawAudio));
             }
         }
     }
 
-    private void RedrawCard()
+    public void RedrawCard()
     {
         if (drawnCardImage.enabled)
         {
+            drawnCardImage.enabled = false;
+            DetailPanel.SetActive(false);
+            deckAnimator.SetTrigger("Reset");
+            drawnAnimator.SetTrigger("Reset");
+            deckAnimator.ResetTrigger("Draw");
+            drawnAnimator.ResetTrigger("Draw");
             CardInfo card = CardManager.SelectCard(NameText.text);
             if (card != null)
             {
+                deckAnimator.SetTrigger("Draw");
+                drawnAnimator.SetTrigger("Draw");
                 drawnCardImage.texture = card.Front;
                 NameText.text = card.Name;
                 DescriptionText.text = card.Description;
-                drawnCardImage.enabled = true;
-
                 AudioClip audio = null;
                 if (card.redrawAudio != null)
                 {
@@ -290,10 +307,14 @@ public class InputManager : View, IInputManager
         }
     }
 
-    private void ClearCard()
+    public void ClearCard()
     {
         drawnCardImage.enabled = false;
         DetailPanel.SetActive(false);
+        deckAnimator.ResetTrigger("Draw");
+        drawnAnimator.ResetTrigger("Draw");
+        deckAnimator.SetTrigger("Reset");
+        drawnAnimator.SetTrigger("Reset");
     }
 
 }

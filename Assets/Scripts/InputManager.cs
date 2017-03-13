@@ -257,12 +257,12 @@ public class InputManager : View, IInputManager
             NameText.text = card.Name;
             DescriptionText.text = card.Description;
             drawnCardImage.enabled = true;
+            deckAnimator.ResetTrigger("Reset");
+            drawnAnimator.ResetTrigger("Reset");
+            deckAnimator.SetTrigger("Draw");
+            drawnAnimator.SetTrigger("Draw");
             if (card.drawAudio != null)
             {
-                deckAnimator.ResetTrigger("Reset");
-                drawnAnimator.ResetTrigger("Reset");
-                deckAnimator.SetTrigger("Draw");
-                drawnAnimator.SetTrigger("Draw");
                 EventManager.Raise(new PlayAudioEvent(card.drawAudio));
             }
         }

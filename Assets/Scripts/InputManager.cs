@@ -113,6 +113,7 @@ public class InputManager : View, IInputManager
 
     private void HandleMouseAndKeyboard()
     {
+        // Mouse
         if (Input.GetMouseButtonDown(0))
         {
             if (!drawnCardImage.enabled)
@@ -121,6 +122,30 @@ public class InputManager : View, IInputManager
             }
         }
         if (Input.GetMouseButtonDown(2))
+        {
+            ClearCard();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!drawnCardImage.enabled)
+            {
+                DrawCard();
+            }
+            else
+            {
+                RedrawCard();
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            if (drawnCardImage.enabled)
+            {
+                //Toggle detail panel
+                DetailPanel.SetActive(!DetailPanel.activeInHierarchy);
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.C))
         {
             ClearCard();
         }

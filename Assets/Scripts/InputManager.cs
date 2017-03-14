@@ -149,6 +149,11 @@ public class InputManager : View, IInputManager
         {
             ClearCard();
         }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            ClearCard();
+            CardManager.ShuffleDeck();
+        }
     }
 
     private void HandleTouch()

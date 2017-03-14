@@ -5,6 +5,8 @@ public interface ICardManager {
 
 	CardInfo SelectCard(string previousName);
 
+	void ShuffleDeck();
+
 	Texture2D CardBack { get; }
 
 	AudioClip PlayAudio { get; }

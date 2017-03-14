@@ -969,6 +969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards: []
+  runThroughDeck: 0
   cardBack: {fileID: 0}
   playAudio: {fileID: 0}
   burnAudio: {fileID: 0}
